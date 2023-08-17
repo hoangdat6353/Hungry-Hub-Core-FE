@@ -52,7 +52,6 @@ const CheckoutDetails: React.FC = () => {
   const { t } = useTranslation('common');
   const [bindIndex, setBindIndex] = useState(0);
   const changeItem = (itemIndex: any, item: IData) => {
-    console.log('ITEM DATA', item.title);
     if (itemIndex !== bindIndex) {
       setBindIndex(itemIndex);
     }

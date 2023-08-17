@@ -10,18 +10,18 @@ const Seo = ({ title, description, path }: SeoProps) => {
       title={title}
       description={description}
       openGraph={{
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/${path}`,
+        url: `https://hungryhub-tdtu.netlify.app/${path}`,
         title,
         description,
         images: [
           {
-            url: '/assets/images/og-image-01.png',
+            url: '/assets/images/seo-image.png',
             width: 800,
             height: 600,
             alt: 'Og Image Alt',
           },
           {
-            url: '/assets/images/og-image-02.png',
+            url: '/assets/images/seo-image.png',
             width: 900,
             height: 800,
             alt: 'Og Image Alt Second',

@@ -22,9 +22,6 @@ const fetchProducts = async ({ queryKey }: any) => {
   const [_key, _params] = queryKey;
 
   const parsedQuery = _params as IQuery;
-  console.log('QUERY HERE ', parsedQuery.q);
-  console.log('CATEGORY HERE:', parsedQuery.category);
-
   let query = '';
   if (parsedQuery.q != null && parsedQuery.q != undefined) {
     query = parsedQuery.q as string;

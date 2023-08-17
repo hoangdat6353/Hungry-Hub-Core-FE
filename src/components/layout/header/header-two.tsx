@@ -61,7 +61,6 @@ const Header: React.FC = () => {
           throw new Error('Failed to fetch categories');
         }
         const data: BaseResponse<Category[]> = await response.json();
-        console.log('DATA HERE:', data.data);
         const transformedMenuItems = transformCategoriesToMenu(data.data);
         setMenuItems(transformedMenuItems);
       } catch (error) {
@@ -69,7 +68,6 @@ const Header: React.FC = () => {
       }
     }
 
-    console.log('MENU ITEMS:', menuItems);
     fetchCategories();
   }, []);
 
