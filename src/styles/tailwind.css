@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 /* Write your own custom base styles here */
 @layer base {
@@ -550,4 +551,46 @@
 }
 .checkout .save-change-button {
   display: none;
+}
+
+.rcw-open-launcher {
+  margin-left: 11px;
+}
+
+.rcw-close-launcher {
+  margin-left: 18px;
+}
+
+.rcw-picker-icon {
+  visibility: hidden;
+}
+
+.rcw-send-icon {
+  height: 40px;
+  margin-left: 11px;
+}
+
+/* Target the specific chatbox header */
+.rcw-conversation-container .rcw-header .rcw-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FF791A;
+  margin-bottom: 8px;
+  padding: 0 16px;
+}
+
+/* Target the specific subtitle */
+.rcw-conversation-container .rcw-header span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  color: #555555;
+  padding: 0 16px;
+}
+
+/* Set the background color for the chatbox header */
+.rcw-conversation-container.active .rcw-header {
+  background-color: #F4F4F4; /* Light pink background */
+  border-radius: 10px 10px 0 0;
 }
