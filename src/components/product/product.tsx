@@ -24,6 +24,8 @@ import SocialShareBox from '@components/ui/social-share-box';
 import ProductDetailsTab from '@components/product/product-details/product-tab';
 import VariationPrice from './variation-price';
 import isEqual from 'lodash/isEqual';
+import { da } from 'date-fns/locale';
+import { Product } from '@framework/types';
 
 const ProductSingleDetails: React.FC = () => {
   const { t } = useTranslation('common');
@@ -84,7 +86,7 @@ const ProductSingleDetails: React.FC = () => {
 
     const item = generateCartItem(data!, selectedVariation);
     addItemToCart(item, quantity);
-    toast('Added to the bag', {
+    toast('Added to the cart', {
       progressClassName: 'fancy-progress-bar',
       position: width! > 768 ? 'bottom-right' : 'top-right',
       autoClose: 1500,
@@ -246,22 +248,6 @@ const ProductSingleDetails: React.FC = () => {
               {t('text-add-to-cart')}
             </Button>
             <div className="grid grid-cols-2 gap-2.5">
-              <Button
-                variant="border"
-                onClick={addToWishlist}
-                loading={addToWishlistLoader}
-                className={`group hover:text-skin-primary ${
-                  favorite === true && 'text-skin-primary'
-                }`}
-              >
-                {favorite === true ? (
-                  <IoIosHeart className="text-2xl md:text-[26px] me-2 transition-all" />
-                ) : (
-                  <IoIosHeartEmpty className="text-2xl md:text-[26px] me-2 transition-all group-hover:text-skin-primary" />
-                )}
-
-                {t('text-wishlist')}
-              </Button>
               <div className="relative group">
                 <Button
                   variant="border"
@@ -298,7 +284,7 @@ const ProductSingleDetails: React.FC = () => {
           )}
         </div>
       </div>
-      <ProductDetailsTab />
+      <ProductDetailsTab productData={data as Product}/>
     </div>
   );
 };

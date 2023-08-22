@@ -277,22 +277,6 @@ export default function ProductPopup() {
                   {t('text-add-to-cart')}
                 </Button>
                 <div className="grid grid-cols-2 gap-2.5">
-                  <Button
-                    variant="border"
-                    onClick={addToWishlist}
-                    loading={addToWishlistLoader}
-                    className={`group hover:text-skin-primary ${
-                      favorite === true && 'text-skin-primary'
-                    }`}
-                  >
-                    {favorite === true ? (
-                      <IoIosHeart className="text-2xl md:text-[26px] me-2 transition-all" />
-                    ) : (
-                      <IoIosHeartEmpty className="text-2xl md:text-[26px] me-2 transition-all group-hover:text-skin-primary" />
-                    )}
-
-                    {t('text-wishlist')}
-                  </Button>
                   <div className="relative group">
                     <Button
                       variant="border"

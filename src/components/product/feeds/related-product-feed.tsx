@@ -2,12 +2,13 @@ import ProductsCarousel from '@components/product/products-carousel';
 import { useRelatedProductsQuery } from '@framework/product/get-related-product';
 import { Product } from '@framework/types';
 import { LIMITS } from '@framework/utils/limits';
+import { useRouter } from 'next/router';
 
 interface RelatedProductsProps {
   carouselBreakpoint?: {} | any;
   className?: string;
   uniqueKey?: string;
-  productData: Product;
+  productData?: Product;
 }
 
 const RelatedProductFeed: React.FC<RelatedProductsProps> = ({
@@ -16,8 +17,15 @@ const RelatedProductFeed: React.FC<RelatedProductsProps> = ({
   uniqueKey = 'related-product-popup',
   productData,
 }) => {
+  const router = useRouter();
+  const {
+    query: { slug },
+  } = router;
+
+  const query = (productData == undefined || productData == null) ? slug : productData.id
+
   const { data, isLoading, error } = useRelatedProductsQuery(
-    productData.id as string,
+    query as string, // Use optional chaining to prevent accessing undefined id
     {
       limit: LIMITS.RELATED_PRODUCTS_LIMITS,
     }

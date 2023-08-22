@@ -29,7 +29,7 @@ export interface Pagination {
 }
 
 export interface BaseStatusResponse {
-  isSuccess: string;
+  isSuccess: boolean;
 }
 
 export interface GetAddressResponse {
