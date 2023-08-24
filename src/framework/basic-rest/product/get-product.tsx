@@ -6,7 +6,7 @@ import { LOCAL_BASE_URL, LOCAL_PRODUCTS_CONTROLLER } from 'src/common/constants/
 import { BaseResponse } from 'src/common/models/auth-models';
 
 export const fetchProduct = async (_slug: string) => {
-  const getProductDetailsURL = LOCAL_BASE_URL + LOCAL_PRODUCTS_CONTROLLER + '/' + _slug;
+  const getProductDetailsURL = LOCAL_BASE_URL + LOCAL_PRODUCTS_CONTROLLER + '/' + _slug + '/details';
 
     const response = await fetch(getProductDetailsURL, {
       method: 'GET',
