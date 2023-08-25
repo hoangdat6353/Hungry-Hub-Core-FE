@@ -52,27 +52,6 @@ export const footer = {
         },
       ],
     },
-    {
-      id: 3,
-      widgetTitle: 'widget-title-community',
-      lists: [
-        {
-          id: 1,
-          title: 'link-announcements',
-          path: '/',
-        },
-        {
-          id: 2,
-          title: 'link-answer-center',
-          path: '/',
-        },
-        {
-          id: 3,
-          title: 'link-discussion-boards',
-          path: '/',
-        },
-      ],
-    },
   ],
   payment: [
     {

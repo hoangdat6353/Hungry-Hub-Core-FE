@@ -116,17 +116,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ isPopup = true, className }) => {
                 })}
               />
               <div className="flex items-center justify-center">
-                <div className="flex items-center flex-shrink-0">
-                  <label className="switch relative inline-block w-10 cursor-pointer">
-                    <Switch checked={remember} onChange={setRemember} />
-                  </label>
-                  <label
-                    htmlFor="remember"
-                    className="flex-shrink-0 text-sm text-heading ps-5 mt-1 cursor-pointer"
-                  >
-                    {t('forms:label-remember-me')}
-                  </label>
-                </div>
                 <div className="flex ms-auto mt-[3px]">
                   <button
                     type="button"
@@ -150,32 +139,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ isPopup = true, className }) => {
               </div>
             </div>
           </form>
-          <div className="flex flex-col items-center justify-center relative text-sm">
-            <span className="mt-6 text-sm text-skin-base opacity-70">
-              {t('common:text-or')}
-            </span>
-          </div>
-
-          <div className="flex justify-center mt-5 space-x-2.5">
-            <button
-              className="group flex items-center justify-center cursor-pointer h-10 w-10 rounded-full border border-skin-one hover:border-skin-primary transition-all focus:border-skin-primary focus:text-skin-primary focus:outline-none"
-              onClick={handelSocialLogin}
-            >
-              <FaFacebook className="h-4 w-4 text-skin-base text-opacity-50 transition-all group-hover:text-skin-primary " />
-            </button>
-            <button
-              className="group flex items-center justify-center cursor-pointer h-10 w-10 rounded-full border border-skin-one hover:border-skin-primary transition-all focus:border-skin-primary focus:text-skin-primary focus:outline-none"
-              onClick={handelSocialLogin}
-            >
-              <FaTwitter className="h-4 w-4 text-skin-base text-opacity-50 transition-all group-hover:text-skin-primary" />
-            </button>
-            <button
-              className="group flex items-center justify-center cursor-pointer h-10 w-10 rounded-full border border-skin-one hover:border-skin-primary transition-all focus:border-skin-primary focus:text-skin-primary focus:outline-none"
-              onClick={handelSocialLogin}
-            >
-              <FaLinkedinIn className="h-4 w-4 text-skin-base text-opacity-50 transition-all group-hover:text-skin-primary" />
-            </button>
-          </div>
         </div>
       </div>
     </div>

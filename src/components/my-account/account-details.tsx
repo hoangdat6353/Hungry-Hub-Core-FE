@@ -143,70 +143,12 @@ const AccountDetails: React.FC = () => {
                 variant="solid"
                 className="w-full sm:w-1/2 px-1.5 md:px-2.5"
                 error={errors.email?.message}
-              />
-            </div>
-            <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
-              <PasswordInput
-                label={t('forms:label-password')}
-                {...register('password', {
-                  required: 'forms:password-required',
-                })}
-                className="w-full sm:w-1/2 px-1.5 md:px-2.5"
-                error={errors.password?.message}
-                placeholder="********"
-              />
-              <PasswordInput
-                label={t('forms:label-confirm-password')}
-                {...register('confirmPassword', {
-                  required: 'forms:password-required',
-                })}
-                error={errors.confirmPassword?.message}
-                className="w-full sm:w-1/2 px-1.5 md:px-2.5"
-                placeholder="********"
+                disabled={true}
               />
             </div>
           </div>
         </div>
-        <div className="relative flex pt-6 md:pt-8 lg:pt-10">
-          <div className="pe-2.5">
-            <Heading className="font-medium mb-1">
-              {t('common:text-share-profile-data')}
-            </Heading>
-            <Text variant="small">
-              {t('common:text-share-profile-data-description')}
-            </Text>
-          </div>
-          <div className="ms-auto">
-            <Controller
-              name="shareProfileData"
-              control={control}
-              defaultValue={true}
-              render={({ field: { value, onChange } }) => (
-                <Switch onChange={onChange} checked={value} />
-              )}
-            />
-          </div>
-        </div>
-        <div className="relative flex mt-5 md:mt-6 lg:mt-7 mb-1 sm:mb-4 lg:mb-6">
-          <div className="pe-2.5">
-            <Heading className="font-medium mb-1">
-              {t('common:text-ads-performance')}
-            </Heading>
-            <Text variant="small">
-              {t('common:text-ads-performance-description')}
-            </Text>
-          </div>
-          <div className="ms-auto">
-            <Controller
-              name="setAdsPerformance"
-              control={control}
-              defaultValue={true}
-              render={({ field: { value, onChange } }) => (
-                <Switch onChange={onChange} checked={value} />
-              )}
-            />
-          </div>
-        </div>
+
         <div className="relative flex sm:ms-auto mt-5 pb-2 lg:pb-0">
           <Button
             type="submit"
