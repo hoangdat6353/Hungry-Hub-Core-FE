@@ -7,6 +7,17 @@ import {
   useModalAction,
 } from '@components/common/modal/modal.context';
 import { useTranslation } from 'next-i18next';
+import { getUserId } from '@framework/utils/get-token';
+import {
+  LOCAL_BASE_URL,
+  LOCAL_USERS_CONTROLLER,
+} from 'src/common/constants/api-constant';
+import {
+  BaseResponse,
+  BaseStatusResponse,
+} from 'src/common/models/auth-models';
+import { useQueryClient } from 'react-query';
+import { useContactQuery } from '@framework/contact/contact';
 
 interface ContactFormValues {
   title: string;
@@ -18,6 +29,7 @@ const AddContactForm: React.FC = () => {
   const { t } = useTranslation();
   const { data } = useModalState();
   const { closeModal } = useModalAction();
+  const { refetch } = useContactQuery();
   const {
     register,
     handleSubmit,
@@ -30,8 +42,39 @@ const AddContactForm: React.FC = () => {
     },
   });
 
-  function onSubmit(values: ContactFormValues) {
-    console.log(values, 'Add Contact');
+  async function onSubmit(values: ContactFormValues) {
+    const userId = getUserId();
+
+    const createContactURL =
+      LOCAL_BASE_URL + LOCAL_USERS_CONTROLLER + '/contact';
+
+    const requestModel: any = {
+      id: userId as string,
+      default: values.default,
+      title: values.title,
+      number: values.number,
+    };
+
+    const response = await fetch(createContactURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestModel),
+    });
+
+    if (!response.ok) {
+      // Handle error responses
+      throw new Error('CREATE CONTACT FAILED');
+    }
+
+    const data: BaseResponse<BaseStatusResponse> = await response.json();
+
+    if (data.data.isSuccess) {
+      await refetch();
+    }
+
+    closeModal();
   }
 
   return (
@@ -42,7 +85,7 @@ const AddContactForm: React.FC = () => {
           <Input
             variant="solid"
             label="forms:label-contact-title"
-            {...register('title', { required: 'forms:contact-title-required' })}
+            {...register('title', { required: 'Title Required' })}
             error={errors.title?.message}
           />
         </div>

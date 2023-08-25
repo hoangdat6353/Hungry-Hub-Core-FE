@@ -30,6 +30,11 @@ const ContactBox: React.FC<{ items?: any }> = ({ items: { data } }) => {
     localStorage.setItem('deliveryContact', selectedJSON);
   }, [selected]);
 
+  useEffect(() => {
+    // Update the local state when new data is received
+    setContactData(data);
+  }, [data]);
+
   return (
     <>
       <div className="text-[15px] text-skin-base">
