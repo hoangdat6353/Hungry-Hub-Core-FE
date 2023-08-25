@@ -39,7 +39,7 @@ interface CreateAddressRequestModel {
 const AddAddressForm: React.FC = () => {
   const { t } = useTranslation();
   const { data } = useModalState();
-  const queryClient = useQueryClient();
+  const { refetch } = useAddressQuery();
 
   const { closeModal } = useModalAction();
 
@@ -74,10 +74,10 @@ const AddAddressForm: React.FC = () => {
       }
 
       const data: BaseResponse<BaseStatusResponse> = await response.json();
-      queryClient.invalidateQueries(
-        LOCAL_BASE_URL + LOCAL_USERS_CONTROLLER + '/' + userId + '/' + 'address'
-      );
-      //const isSuccess = data.data.isSuccess;
+
+      if (data.data.isSuccess) {
+        await refetch();
+      }
     }
 
     closeModal();

@@ -15,8 +15,7 @@ const AddressGrid: React.FC<{ address?: any }> = ({ address }) => {
   function handlePopupView(item: any) {
     openModal('ADDRESS_VIEW_AND_EDIT', item);
   }
-
-  address = address || [];
+  const [addressData, setAddressData] = useState(address);
 
   const [selected, setSelected] = useState(address[0]);
 
@@ -28,6 +27,10 @@ const AddressGrid: React.FC<{ address?: any }> = ({ address }) => {
     localStorage.setItem('deliveryAddress', selectedJSON);
   }, [selected]);
 
+  useEffect(() => {
+    setAddressData(address);
+  }, [address]);
+
   return (
     <div className="text-15px h-full flex flex-col justify-between -mt-4 md:mt-0">
       <RadioGroup
@@ -36,8 +39,8 @@ const AddressGrid: React.FC<{ address?: any }> = ({ address }) => {
         className="md:grid md:grid-cols-2 md:gap-5 auto-rows-auto space-y-4 md:space-y-0"
       >
         <RadioGroup.Label className="sr-only">{t('address')}</RadioGroup.Label>
-        {address?.length > 0 ? (
-          address?.map((item: any, index: any) => (
+        {addressData?.length > 0 ? (
+          addressData?.map((item: any, index: any) => (
             <RadioGroup.Option
               key={index}
               value={item}
