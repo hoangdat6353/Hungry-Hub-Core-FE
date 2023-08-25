@@ -40,7 +40,7 @@ const transformCategoriesToMenu = (
   return categories.map((category) => ({
     id: category.id.toString(),
     path: `/search?q=${encodeURIComponent(category.name)}`,
-    label: `menu-${category.slug}`,
+    label: category.name,
   }));
 };
 
