@@ -14,16 +14,6 @@ export const footer = {
           title: 'link-contact-us',
           path: '/contact-us',
         },
-        {
-          id: 3,
-          title: 'link-about-team',
-          path: '/about-us',
-        },
-        {
-          id: 4,
-          title: 'link-customer-support',
-          path: '/contact-us',
-        },
       ],
     },
     {
@@ -32,23 +22,8 @@ export const footer = {
       lists: [
         {
           id: 1,
-          title: 'link-privacy',
-          path: '/privacy',
-        },
-        {
-          id: 2,
-          title: 'link-terms',
-          path: '/terms',
-        },
-        {
-          id: 3,
-          title: 'link-return-policy',
-          path: '/privacy',
-        },
-        {
-          id: 4,
-          title: 'link-site-map',
-          path: '/',
+          title: 'link-faq',
+          path: '/faq',
         },
       ],
     },

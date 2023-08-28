@@ -9,28 +9,28 @@ import { ROUTES } from '@utils/routes';
 const data = [
   {
     id: 1,
-    slug: 'feel-the-thirsty-in-summer-anytime',
+    slug: 'search?category=thuc-uong',
     image: '/assets/images/collection/1.png',
     title: 'collection-title-one',
     description: 'collection-description-one',
   },
   {
     id: 2,
-    slug: 'most-popular-item-for-Fast-food',
+    slug: 'search?category=thuc-an-nhanh',
     image: '/assets/images/collection/2.png',
     title: 'collection-title-two',
     description: 'collection-description-two',
   },
   {
     id: 3,
-    slug: 'authentic-japanese-food-in-real-taste',
+    slug: 'search?category=cac-loai-thịt',
     image: '/assets/images/collection/3.png',
     title: 'collection-title-three',
     description: 'collection-description-three',
   },
   {
     id: 4,
-    slug: 'explore-our-family-of-freshest®-foods',
+    slug: 'search?category=cac-loai-thịt',
     image: '/assets/images/collection/4.png',
     title: 'collection-title-four',
     description: 'collection-description-four',
@@ -88,7 +88,7 @@ const CollectionGrid: React.FC<Props> = ({
                 <CollectionCard
                   key={item.id}
                   collection={item}
-                  href={`${ROUTES.BUNDLE}/${item.slug}`}
+                  href={`${ROUTES.HOME}${item.slug}`}
                 />
               </SwiperSlide>
             ))}
@@ -99,7 +99,7 @@ const CollectionGrid: React.FC<Props> = ({
               <CollectionCard
                 key={item.id}
                 collection={item}
-                href={`${ROUTES.BUNDLE}/${item.slug}`}
+                href={`${ROUTES.HOME}${item.slug}`}
               />
             ))}
           </div>

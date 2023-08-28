@@ -35,7 +35,7 @@ const CheckoutCard: React.FC = () => {
     {
       id: 2,
       name: t('text-shipping'),
-      price: '$0',
+      price: '30.000 vnđ',
     },
     {
       id: 3,

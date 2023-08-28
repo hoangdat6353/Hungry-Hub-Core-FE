@@ -122,7 +122,7 @@
   "text-items-found": "Tất cả món ăn được tìm thấy:",
   "text-pieces-available": "Pieces Available",
   "text-close": "Đóng",
-  "text-cart": "Cart",
+  "text-cart": "Giỏ hàng",
   "text-product": "Món ăn",
   "text-shipping": "Phí vận chuyển",
   "text-checkout-heading": "Checkout",
@@ -134,8 +134,8 @@
   "text-all-grocery-items": "All Grocery Items",
   "text-lowest-price": "Giá từ thấp đến cao",
   "text-highest-price": "Giá từ cao đến thấp",
-  "text-new-arrival": "New Arrival",
-  "text-most-order": "Most Order",
+  "text-new-arrival": "Món mới",
+  "text-most-order": "Bán chạy",
   "text-reset-password":"Cài lại mật khẩu",
   "text-back-to": "Quay về",
   "text-and": "và",
@@ -145,7 +145,7 @@
   "text-selecting-this-option": "By selecting this option you accept full responsibility for your order after it has been delivered unattended, including any loss due to theft or damage due to temperature sensitivity.",
   "text-add-phone-number": "Thêm số điện thoại",
   "text-delivery-payment": "Delivery Payment",
-  "text-orders": "Orders",
+  "text-orders": "Đơn hàng",
   "text-out-stock": "Out Of Stock",
   "text-read-more": "Xem thêm",
   "text-new-order": "new order",
@@ -193,5 +193,7 @@
   "text-shop-page": "Shop Page",
   "text-all-shops": "All Shops",
   "text-more-info": "More Info",
-  "text-details": "Details"
+  "text-details": "Details",
+  "text-only": "Chỉ còn",
+  "text-left-item": "sản phẩm!"
 }

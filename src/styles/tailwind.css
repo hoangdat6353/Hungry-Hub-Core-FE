@@ -6,7 +6,7 @@
 /* Write your own custom base styles here */
 @layer base {
   :root {
-    --color-primary: 2, 178, 144;
+    --color-primary: 255, 121, 26;
     --color-tangerine: 243, 142, 0;
     --color-red: 220, 38, 38;
     --color-red-secondary: 253, 84, 115;
@@ -575,7 +575,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
   font-weight: bold;
-  color: #FF791A;
+  color: #ff791a;
   margin-bottom: 8px;
   padding: 0 16px;
 }
@@ -591,6 +591,10 @@
 
 /* Set the background color for the chatbox header */
 .rcw-conversation-container.active .rcw-header {
-  background-color: #F4F4F4; /* Light pink background */
+  background-color: #f4f4f4; /* Light pink background */
   border-radius: 10px 10px 0 0;
+}
+
+.rcw-launcher {
+  background-color: #ff791a !important;
 }

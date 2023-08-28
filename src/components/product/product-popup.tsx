@@ -316,17 +316,7 @@ export default function ProductPopup() {
                 <Heading className="mb-3 lg:mb-3.5">
                   {t('text-product-details')}:
                 </Heading>
-                <Text variant="small">
-                  {description.split(' ').slice(0, 40).join(' ')}
-                  {'...'}
-                  <span
-                    onClick={navigateToProductPage}
-                    role="button"
-                    className="text-skin-primary ms-0.5"
-                  >
-                    {t('text-read-more')}
-                  </span>
-                </Text>
+                <Text variant="small">{description}</Text>
               </div>
             </div>
           </div>

@@ -32,9 +32,9 @@ const Search = React.forwardRef<HTMLDivElement, Props>(
     } = useUI();
     const [searchText, setSearchText] = useState('');
     const [inputFocus, setInputFocus] = useState<boolean>(false);
-    // const { data, isLoading } = useSearchQuery({
-    //   text: searchText,
-    // });
+    const { data, isLoading } = useSearchQuery({
+      text: searchText,
+    });
     useFreezeBodyScroll(
       inputFocus === true || displaySearch || displayMobileSearch
     );

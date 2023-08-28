@@ -27,14 +27,15 @@ const SearchTopBar = () => {
         <div className="flex-shrink-0 text-skin-base font-medium text-15px leading-4 md:me-6 hidden lg:block mt-0.5">
           {t('text-items-found')}
         </div>
-        <ListBox
+        {/* //TODO: HANDLE SORT BY */}
+        {/* <ListBox
           options={[
             { name: 'text-lowest-price', value: 'lowest' },
             { name: 'text-highest-price', value: 'highest' },
             { name: 'text-new-arrival', value: 'new-arrival' },
             { name: 'text-most-order', value: 'most-order' },
           ]}
-        />
+        /> */}
       </div>
       <Drawer
         placement={dir === 'rtl' ? 'right' : 'left'}

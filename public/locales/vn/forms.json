@@ -54,6 +54,7 @@
   "label-contact-title": "Tên liên lạc",
   "contact-title-required": "Tên liên lạc không được bỏ trống",
   "default-type-required": "Default type Required",
-  "contact-number-required": "Số điện thoại không được bỏ trống"
+  "contact-number-required": "Số điện thoại không được bỏ trống",
+  "placeholder-search": "Bạn đang tìm gì..."
   
 }
