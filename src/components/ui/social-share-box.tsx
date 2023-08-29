@@ -65,27 +65,6 @@ const SocialShareBox: React.FC<Props> = ({ className = '', shareUrl = '' }) => {
             className="transition-all hover:opacity-90"
           />
         </FacebookShareButton>
-        <TwitterShareButton url={shareUrl}>
-          <TwitterIcon
-            size={40}
-            round
-            className="transition-all hover:opacity-90"
-          />
-        </TwitterShareButton>
-        <WhatsappShareButton url={shareUrl} separator=":: ">
-          <WhatsappIcon
-            size={40}
-            round
-            className="transition-all hover:opacity-90"
-          />
-        </WhatsappShareButton>
-        <LinkedinShareButton url={shareUrl}>
-          <LinkedinIcon
-            size={40}
-            round
-            className="transition-all hover:opacity-90"
-          />
-        </LinkedinShareButton>
       </div>
       <Text variant="small">{t('text-or-copy-link')}</Text>
       <div className="relative mt-2.5 mb-1.5">

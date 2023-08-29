@@ -16,8 +16,6 @@ export interface UpdateUserType {
   address: string;
   phoneNumber: string;
   email: string;
-  password: string;
-  confirmPassword: string;
 }
 async function updateUser(input: UpdateUserType) {
   const userToken = getToken();

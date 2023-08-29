@@ -32,9 +32,9 @@ const Search = React.forwardRef<HTMLDivElement, Props>(
     } = useUI();
     const [searchText, setSearchText] = useState('');
     const [inputFocus, setInputFocus] = useState<boolean>(false);
-    const { data, isLoading } = useSearchQuery({
-      text: searchText,
-    });
+    // const { data, isLoading } = useSearchQuery({
+    //   text: searchText,
+    // });
     useFreezeBodyScroll(
       inputFocus === true || displaySearch || displayMobileSearch
     );
@@ -90,7 +90,7 @@ const Search = React.forwardRef<HTMLDivElement, Props>(
           {searchText && (
             <div className="w-full absolute top-[56px] start-0 py-2.5 bg-skin-fill rounded-md flex flex-col overflow-hidden shadow-dropDown z-30">
               <Scrollbar className="os-host-flexbox">
-                <div className="w-full h-[380px]">
+                {/* <div className="w-full h-[380px]">
                   {isLoading
                     ? Array.from({ length: 15 }).map((_, idx) => (
                         <div
@@ -112,7 +112,7 @@ const Search = React.forwardRef<HTMLDivElement, Props>(
                           <SearchProduct item={item} key={index} />
                         </div>
                       ))}
-                </div>
+                </div> */}
               </Scrollbar>
             </div>
           )}

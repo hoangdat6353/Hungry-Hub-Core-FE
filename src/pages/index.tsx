@@ -40,6 +40,7 @@ export default function Home() {
 
   const handleNewUserMessage = (newMessage: string) => {
     console.log(`New message incoming! ${newMessage}`);
+    //const URL = 'http://127.0.0.1:10000/predict';
 
     // Send the user message to your API
     fetch(CHATBOT_SIT_URL, {

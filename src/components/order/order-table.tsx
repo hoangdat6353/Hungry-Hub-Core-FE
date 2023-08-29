@@ -10,6 +10,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { BsSearch } from 'react-icons/bs';
+import { useTranslation } from 'next-i18next';
 
 export const CreatedAt: React.FC<{ createdAt?: any }> = ({ createdAt }) => {
   dayjs.extend(relativeTime);
@@ -34,55 +35,55 @@ export const Status: React.FC<{ item?: any }> = ({ item }) => {
   );
 };
 
-const columns = [
-  {
-    title: 'Order Number',
-    dataIndex: 'tracking_number',
-    key: 'tracking_number',
-    className: 'id-cell',
-  },
-  {
-    title: 'Order Date',
-    dataIndex: 'created_at',
-    key: 'created_at',
-    render: function createdAt(items: any) {
-      return <CreatedAt createdAt={items} />;
-    },
-  },
-  {
-    title: 'Status',
-    key: 'status',
-    render: function status(item: any) {
-      return <Status item={item} />;
-    },
-  },
-  {
-    title: 'Delivery Time',
-    dataIndex: 'delivery_time',
-    key: 'delivery_time',
-  },
-  {
-    title: 'Total Price',
-    key: 'total',
-    render: function totalPrice(items: any) {
-      return <TotalPrice items={items} />;
-    },
-  },
-  {
-    dataIndex: '',
-    key: 'operations',
-    render: function actionsButton(item: any) {
-      return <ActionsButton item={item} />;
-    },
-    className: 'operations-cell',
-  },
-];
-
 const OrderTable: React.FC<{ orders?: any }> = ({ orders }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [value, setValue] = useState('');
   const countPerPage = 5;
   let [filterData, setDataValue] = useState(orders.slice(0, countPerPage));
+  const { t } = useTranslation('common');
+  const columns = [
+    {
+      title: t('text-order-number'),
+      dataIndex: 'tracking_number',
+      key: 'tracking_number',
+      className: 'id-cell',
+    },
+    {
+      title: t('text-order-date'),
+      dataIndex: 'created_at',
+      key: 'created_at',
+      render: function createdAt(items: any) {
+        return <CreatedAt createdAt={items} />;
+      },
+    },
+    {
+      title: t('text-order-status'),
+      key: 'status',
+      render: function status(item: any) {
+        return <Status item={item} />;
+      },
+    },
+    {
+      title: t('text-order-delivery'),
+      dataIndex: 'delivery_time',
+      key: 'delivery_time',
+    },
+    {
+      title: t('text-order-price'),
+      key: 'total',
+      render: function totalPrice(items: any) {
+        return <TotalPrice items={items} />;
+      },
+    },
+    {
+      dataIndex: '',
+      key: 'operations',
+      render: function actionsButton(item: any) {
+        return <ActionsButton item={item} />;
+      },
+      className: 'operations-cell',
+    },
+  ];
 
   const updatePage = (p: any) => {
     setCurrentPage(p);
@@ -114,7 +115,7 @@ const OrderTable: React.FC<{ orders?: any }> = ({ orders }) => {
     <>
       <div className="md:flex md:justify-between items-center mb-5 sm:mb-10">
         <h2 className="font-semibold text-sm md:text-xl text-skin-base mb-4 md:mb-0">
-          My order list
+          {t('order-page-title')}
         </h2>
         <form onSubmit={onSubmitHandle} className="relative">
           <span className="absolute end-3 top-[80%] transform -translate-y-1/2 order-icon-color">
@@ -125,7 +126,7 @@ const OrderTable: React.FC<{ orders?: any }> = ({ orders }) => {
             type="search"
             value={value}
             onChange={onChangeSearch}
-            placeholder="Search Order list"
+            placeholder={t('order-page-input-placeholder')}
             inputClassName=" h-[46px] w-full placeholder-[rgba(0, 0, 0, .3)] bg-white border border-[#E3E8EC] rounded-md order-search focus:border-2 focus:outline-none focus:border-skin-primary"
           />
         </form>
