@@ -27,6 +27,17 @@ export const footer = {
         },
       ],
     },
+    {
+      id: 3,
+      widgetTitle: '',
+      lists: [
+        {
+          id: 1,
+          title: '',
+          path: '/',
+        },
+      ],
+    },
   ],
   payment: [
     {

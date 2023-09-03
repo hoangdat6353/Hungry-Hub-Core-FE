@@ -27,6 +27,11 @@ export const siteSettings = {
     menu: [
       {
         id: 1,
+        path: '/',
+        label: 'menu-home',
+      },
+      {
+        id: 2,
         path: '/search',
         label: 'menu-categories',
         subMenu: [
@@ -58,9 +63,19 @@ export const siteSettings = {
         ],
       },
       {
-        id: 2,
+        id: 3,
         path: '/search/',
         label: 'menu-search',
+      },
+      {
+        id: 4,
+        path: '/about-us/',
+        label: 'menu-about-us',
+      },
+      {
+        id: 5,
+        path: '/faq/',
+        label: 'menu-faq',
       },
     ],
     languageMenu: [

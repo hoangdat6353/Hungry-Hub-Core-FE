@@ -1,21 +1,25 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
-import cn from 'classnames';
+import { siteSettings } from '@settings/site-settings';
 import { ROUTES } from '@utils/routes';
 import { useUI } from '@contexts/ui.context';
-import { siteSettings } from '@settings/site-settings';
 import { addActiveScroll } from '@utils/add-active-scroll';
 import Container from '@components/ui/container';
 import Logo from '@components/ui/logo';
-import HeaderMenu from '@components/layout/header/header-menu';
-import LanguageSwitcher from '@components/ui/language-switcher';
 import UserIcon from '@components/icons/user-icon';
 import MenuIcon from '@components/icons/menu-icon';
-import useOnClickOutside from '@utils/use-click-outside';
+import HeaderMenu from '@components/layout/header/header-menu';
+import LanguageSwitcher from '@components/ui/language-switcher';
 import { useModalAction } from '@components/common/modal/modal.context';
+import cn from 'classnames';
 import Search from '@components/common/search';
-import SearchIcon from '@components/icons/search-icon';
+import { Category } from '@framework/types';
+import {
+  LOCAL_BASE_URL,
+  LOCAL_CATEGORIES_CONTROLLER,
+} from 'src/common/constants/api-constant';
+import { BaseResponse } from 'src/common/models/auth-models';
 const AuthMenu = dynamic(() => import('./auth-menu'), { ssr: false });
 const CartButton = dynamic(() => import('@components/cart/cart-button'), {
   ssr: false,
@@ -24,21 +28,81 @@ const CartButton = dynamic(() => import('@components/cart/cart-button'), {
 type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const { site_header } = siteSettings;
 
+type CategoryHeader = {
+  id: string;
+  path: string;
+  label: string;
+};
+
+const transformCategoriesToMenu = (
+  categories: Category[]
+): CategoryHeader[] => {
+  return categories.map((category) => ({
+    id: category.id.toString(),
+    path: `/search?q=${encodeURIComponent(category.name)}`,
+    label: category.name,
+  }));
+};
+
+type MenuItem = {
+  id: string;
+  path: string;
+  label: string;
+  subMenu?: CategoryHeader[];
+};
+
 const Header: React.FC = () => {
-  const { t } = useTranslation('common');
+  const { openSidebar, isAuthorized, displayMobileSearch } = useUI();
   const { openModal } = useModalAction();
-  const {
-    openSidebar,
-    displaySearch,
-    openSearch,
-    closeSearch,
-    isAuthorized,
-    displayMobileSearch,
-  } = useUI();
+  const { t } = useTranslation('common');
   const siteHeaderRef = useRef() as DivElementRef;
-  const siteSearchRef = useRef() as DivElementRef;
-  useOnClickOutside(siteSearchRef, () => closeSearch());
-  addActiveScroll(siteHeaderRef, 10);
+  const [menuItems, setMenuItems] = useState<CategoryHeader[]>([]);
+
+  const headerData: MenuItem[] = [
+    {
+      id: '1',
+      path: '/',
+      label: 'menu-home',
+    },
+    {
+      id: '2',
+      path: '/search',
+      label: 'menu-categories',
+      subMenu: menuItems,
+    },
+    {
+      id: '4',
+      path: '/about-us/',
+      label: 'menu-about-us',
+    },
+    {
+      id: '5',
+      path: '/faq/',
+      label: 'menu-faq',
+    },
+  ];
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const getAllCategoriesURL =
+          LOCAL_BASE_URL + LOCAL_CATEGORIES_CONTROLLER + '/';
+        const response = await fetch(getAllCategoriesURL);
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        const data: BaseResponse<Category[]> = await response.json();
+        const transformedMenuItems = transformCategoriesToMenu(data.data);
+        setMenuItems(transformedMenuItems);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchCategories();
+  }, []);
+
+  addActiveScroll(siteHeaderRef);
   function handleLogin() {
     openModal('LOGIN_VIEW');
   }
@@ -51,55 +115,30 @@ const Header: React.FC = () => {
       id="siteHeader"
       ref={siteHeaderRef}
       className={cn(
-        'header-three sticky-header w-full h-16 lg:h-20 sticky lg:relative top-0 z-20',
+        'header-one w-full h-16 lg:h-20 z-30 sticky top-0',
         displayMobileSearch && 'active-mobile-search'
       )}
     >
-      <div className="innerSticky absolute lg:fixed w-screen lg:w-full body-font bg-skin-fill transition duration-200 ease-in-out z-30">
+      <div className="innerSticky body-font bg-skin-fill w-full h-16 lg:h-20 z-20 transition duration-200 ease-in-out">
         <Search className="top-bar-search lg:max-w-[600px] absolute z-30 px-4 md:px-6 top-1" />
         {/* End of Mobile search */}
-        <Container
-          className={cn(
-            'top-bar h-16 lg:h-20 flex items-center justify-center lg:justify-between py-3',
-            displayMobileSearch && 'active-mobile-search'
-          )}
-        >
+        <Container className="flex items-center justify-between lg:justify-center h-full w-full">
           <button
             aria-label="Menu"
-            className="menuBtn me-5 hidden lg:flex 2xl:hidden flex-col items-center justify-center flex-shrink-0 outline-none focus:outline-none"
+            className="menuBtn me-5 hidden lg:flex xl:hidden flex-col items-center justify-center flex-shrink-0 outline-none focus:outline-none"
             onClick={handleMobileMenu}
           >
             <MenuIcon />
           </button>
 
-          <Logo className="logo -mt-1" />
-          {/* End of logo */}
+          <Logo className="-mt-1" />
 
           <HeaderMenu
-            className="hidden 2xl:flex ps-10 3xl:w-auto"
-            data={site_header.menu}
+            data={headerData}
+            className="hidden xl:flex md:ps-6 xl:ps-10"
           />
-          {/* End of menu */}
-          {displaySearch && (
-            <div className="sticky-search w-full absolute top-0 left-0 px-4 flex items-center justify-center h-full">
-              <Search
-                ref={siteSearchRef}
-                className="max-w-[780px] xl:max-w-[830px] 2xl:max-w-[1000px]"
-              />
-            </div>
-          )}
-          {/* End of conditional search  */}
 
           <div className="flex flex-shrink-0 space-s-5 xl:space-s-7 ms-auto">
-            <button
-              type="button"
-              onClick={() => openSearch()}
-              title="Search toggle"
-              className="outline-none py-2 w-8 -me-2 h-full hidden lg:flex items-center justify-center transition duration-200 ease-in-out hover:text-heading focus:outline-none"
-            >
-              <SearchIcon className="w-[22px] h-[22px] text-skin-base text-opacity-40" />
-            </button>
-            {/* End of search handler btn */}
             <LanguageSwitcher />
             <CartButton className="hidden lg:flex" />
             <div className="hidden lg:flex items-center flex-shrink-0 ">
@@ -116,9 +155,7 @@ const Header: React.FC = () => {
               </AuthMenu>
             </div>
           </div>
-          {/* End of auth & lang */}
         </Container>
-        {/* End of top part */}
       </div>
     </header>
   );

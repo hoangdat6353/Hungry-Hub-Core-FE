@@ -11,7 +11,8 @@ import { ROUTES } from '@utils/routes';
 import { decodeToken, getToken, getUserId } from '@framework/utils/get-token';
 
 const CheckoutCard: React.FC = () => {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+  const currentLanguage = i18n.language;
   const { items, total, isEmpty } = useCart();
   const { price: subtotal } = usePrice({
     amount: total,
@@ -35,7 +36,7 @@ const CheckoutCard: React.FC = () => {
     {
       id: 2,
       name: t('text-shipping'),
-      price: '30.000 vnđ',
+      price: currentLanguage == 'en' ? '$1.5' : '30.000 VND',
     },
     {
       id: 3,
@@ -74,22 +75,7 @@ const CheckoutCard: React.FC = () => {
           {t('button-order-now')}
         </Button>
       </div>
-      <Text className="mt-8">
-        {t('text-by-placing-your-order')}{' '}
-        <Link href={ROUTES.TERMS}>
-          <a className="text-skin-primary underline font-medium">
-            {t('text-terms-of-service')}{' '}
-          </a>
-        </Link>
-        {t('text-and')}{' '}
-        <Link href={ROUTES.PRIVACY}>
-          <a className="text-skin-primary underline font-medium">
-            {t('text-privacy')}
-          </a>
-        </Link>
-        . {t('text-credit-debit')}
-      </Text>
-      <Text className="mt-4">{t('text-bag-fee')}</Text>
+      <Text className="mt-8">{t('text-by-placing-your-order')} </Text>
     </>
   );
 };

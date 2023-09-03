@@ -44,12 +44,43 @@ const transformCategoriesToMenu = (
   }));
 };
 
+type MenuItem = {
+  id: string;
+  path: string;
+  label: string;
+  subMenu?: CategoryHeader[];
+};
+
 const Header: React.FC = () => {
   const { openSidebar, isAuthorized, displayMobileSearch } = useUI();
   const { openModal } = useModalAction();
   const { t } = useTranslation('common');
   const siteHeaderRef = useRef() as DivElementRef;
   const [menuItems, setMenuItems] = useState<CategoryHeader[]>([]);
+
+  const headerData: MenuItem[] = [
+    {
+      id: '1',
+      path: '/',
+      label: 'menu-home',
+    },
+    {
+      id: '2',
+      path: '/search',
+      label: 'menu-categories',
+      subMenu: menuItems,
+    },
+    {
+      id: '4',
+      path: '/about-us/',
+      label: 'menu-about-us',
+    },
+    {
+      id: '5',
+      path: '/faq/',
+      label: 'menu-faq',
+    },
+  ];
 
   useEffect(() => {
     async function fetchCategories() {
@@ -103,7 +134,7 @@ const Header: React.FC = () => {
           <Logo className="-mt-1" />
 
           <HeaderMenu
-            data={menuItems}
+            data={headerData}
             className="hidden xl:flex md:ps-6 xl:ps-10"
           />
 

@@ -61,69 +61,6 @@ export default function TermsPage() {
                 height={390}
               />
             </div>
-            <div
-              className="text-skin-base opacity-70 text-sm leading-7 lg:text-15px lg:leading-loose"
-              dangerouslySetInnerHTML={{
-                __html: t(aboutSetting.descriptionTwo),
-              }}
-            />
-            <div className="my-8 lg:my-14 flex flex-col sm:grid grid-cols-3 gap-4">
-              <Image
-                src={aboutUs3}
-                alt={t('text-map')}
-                className=" me-4"
-                width={379}
-                height={262}
-              />
-              <Image
-                src={aboutUs4}
-                alt={t('text-map')}
-                className=" me-4"
-                width={379}
-                height={262}
-              />
-              <Image
-                src={aboutUs5}
-                alt={t('text-map')}
-                className=" "
-                width={379}
-                height={262}
-              />
-            </div>
-            <div
-              className="text-skin-base opacity-70 text-sm leading-7 lg:text-15px lg:leading-loose"
-              dangerouslySetInnerHTML={{
-                __html: t(aboutSetting.descriptionThree),
-              }}
-            />
-            <div className="flex mt-8 lg:mt-14 mb-6 lg:mb-10">
-              <Image
-                src={aboutUs6}
-                alt={t('text-map')}
-                className=" me-4"
-                height={400}
-                width={1200}
-              />
-            </div>
-            <h2 className="text-lg md:text-xl lg:text-[24px] text-skin-base font-semibold mb-4 lg:mb-7">
-              {t(aboutSetting.titleTwo)}
-            </h2>
-            <div
-              className="text-skin-base opacity-70 text-sm leading-7 lg:text-15px lg:leading-loose"
-              dangerouslySetInnerHTML={{
-                __html: t(aboutSetting.descriptionFour),
-              }}
-            />
-            <p className="text-skin-base font-medium text-base lg:text-lg leading-7 2xl:text-[20px] lg:leading-loose lg:mt-4 mb-3.5">
-              {t(aboutSetting.titleThree)} &nbsp;
-              <a href="mailto:press@borobazar.com">press@hungryhub.com</a>.
-            </p>
-            <div
-              className="text-skin-base opacity-70 text-sm leading-7 lg:text-15px lg:leading-loose"
-              dangerouslySetInnerHTML={{
-                __html: t(aboutSetting.descriptionFive),
-              }}
-            />
           </div>
         </Container>
       </div>

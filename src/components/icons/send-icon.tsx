@@ -1,5 +1,5 @@
 const SendIcon = ({
-  color = '#02B290',
+  color = '#FF791A',
   width = '20',
   height = '20',
   className = '',

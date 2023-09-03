@@ -78,7 +78,7 @@ export default function Cart() {
         </Text>
         <div className="flex flex-col" onClick={closeDrawer}>
           <Link
-            href={isEmpty === false ? ROUTES.CHECKOUT : '/'}
+            href={isEmpty === false && userId ? ROUTES.CHECKOUT : '/'}
             className={cn(
               'w-full px-5 py-3 md:py-4 flex items-center justify-center bg-heading rounded font-semibold text-sm sm:text-15px text-skin-inverted bg-skin-primary focus:outline-none transition duration-300 hover:bg-opacity-90',
               {

@@ -28,7 +28,7 @@ const CategoryDropdownMenu: React.FC<CategoryDropdownProps> = ({
           <div className="2xl:pe-10">
             <Alert message={error.message} />
           </div>
-        ) : loading && !data?.categories?.data?.length ? (
+        ) : loading && !data ? (
           Array.from({ length: 15 }).map((_, idx) => (
             <CategoryListCardLoader
               key={`category-list-${idx}`}
@@ -36,7 +36,7 @@ const CategoryDropdownMenu: React.FC<CategoryDropdownProps> = ({
             />
           ))
         ) : (
-          <CategoryMenu items={data?.categories?.data.slice(0, 9)} />
+          <CategoryMenu items={data?.categories?.data} />
         )}
       </div>
     </div>

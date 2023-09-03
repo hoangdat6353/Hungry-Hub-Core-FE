@@ -68,7 +68,7 @@ export const fetchOrder = async (_id: string, retrievedData: State) => {
         total: retrievedData.total,
         discount: 0,
         customerId: _id,
-        shipping_fee: 5,
+        shipping_fee: 30000,
         shipping_address: deliveryAddress,
         products: retrievedData.items,
         contact: deliveryContact,
