@@ -28,6 +28,51 @@ export interface ResponseData {
   answer: string;
 }
 export default function Home() {
+  const isSSR = typeof window === 'undefined';
+  const imagePath = '/assets/images/linkicon.png'; // Adjust the path as needed
+
+  const DynamicWidget = dynamic(
+    () => import('react-chat-widget').then((mod) => mod.Widget),
+    {
+      ssr: false, // Load only on the client side
+    }
+  );
+
+  const handleNewUserMessage = (newMessage: string) => {
+    console.log(`New message incoming! ${newMessage}`);
+    //const URL = 'http://127.0.0.1:10000/predict';
+
+    // Send the user message to your API
+    fetch(CHATBOT_SIT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ message: newMessage }),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json', // Add this line to indicate JSON response is accepted
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Add the response from the API to the chat UI
+        const responseData = data as ResponseData;
+        addResponseToWidget(responseData.answer);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        //Handle error and display an error message in the chat UI
+        addResponseToWidget(
+          'Oops! Something went wrong. Please try again later.'
+        );
+      });
+  };
+
+  const addResponseToWidget = (text: string) => {
+    if (typeof window !== 'undefined') {
+      const { addResponseMessage } = require('react-chat-widget');
+      addResponseMessage(text);
+    }
+  };
+
   return (
     <>
       <Seo
@@ -44,7 +89,15 @@ export default function Home() {
           className="mb-12 lg:mb-14 xl:mb-16 2xl:mb-20"
           data={bundle}
         />
-
+        {process.browser && !isSSR && (
+          <DynamicWidget
+            handleNewUserMessage={handleNewUserMessage}
+            title="Hungry Hub - Chatbot Service"
+            subtitle="Hi how can I help you today?"
+            showTimeStamp={true}
+            profileAvatar={imagePath}
+          />
+        )}
         <CategoryGridBlock />
         <BestSellerGroceryProductFeed />
         <BannerCard
